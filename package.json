@@ -9,30 +9,52 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vuetify": "^2.2.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-eslint": "^4.4.6",
     "@vue/cli-service": "~4.4.0",
+    "@vue/eslint-config-airbnb": "^5.1.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
+    "eslint-plugin-jsdoc": "^29.2.0",
+    "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "eslint-plugin-vuetify": "^1.0.0-beta.7",
+    "prettier": "2.0.5",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-vuetify": "~2.0.6",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
   },
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
+    "plugins": [
+      "jsdoc",
+      "vuetify"
+    ],
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "@vue/airbnb",
+      "plugin:vue/recommended",
+      "plugin:jsdoc/recommended",
+      "@vue/prettier"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "vuetify/grid-unknown-attributes": "error",
+      "vuetify/no-deprecated-classes": "error",
+      "vuetify/no-legacy-grid": "error"
+    }
   },
   "browserslist": [
     "> 1%",
