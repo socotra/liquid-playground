@@ -1,142 +1,194 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
+    <v-row>
+      <v-col cols="11">
+        <v-text-field
+          v-model="hostname"
+          label="Tenant Hostname"
+          :error-messages="authorizationErrorMessage"
+          :color="authorized ? 'success' : 'normal'"
+          @change="authorize"
+        ></v-text-field>
       </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br />please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          >
-        </p>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
+      <v-col cols="1">
+        <v-icon :color="authorized ? 'success' : 'normal'">mdi-circle</v-icon>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="4">
+        <v-text-field
+          v-model="username"
+          label="Username"
+          :error="!!authorizationErrorMessage"
+          :color="authorized ? 'success' : 'normal'"
+          @change="authorize"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="4">
+        <v-text-field
+          v-model="password"
+          label="Password"
+          :error="!!authorizationErrorMessage"
+          :color="authorized ? 'success' : 'normal'"
+          @change="authorize"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="4">
+        <v-text-field
+          v-model="perilId"
+          label="Peril ID"
+          :error-messages="perilErrorMessage"
+          @change="checkLiquid"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-textarea
+          v-model="liquid"
+          label="Liquid"
+          rows="12"
+          @change="checkLiquid"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-list>
+          <v-subheader>Variables</v-subheader>
+          <v-list-item v-for="(v, i) in variables" :key="i">
+            <v-list-item-title>{{ v.key }}</v-list-item-title>
+            {{ v.value }}
+          </v-list-item>
+          <v-subheader>Premiums</v-subheader>
+          <v-list-item v-if="perilCalculation.premium">
+            <v-list-item-title>Premium</v-list-item-title>
+            {{ perilCalculation.premium }}
+          </v-list-item>
+          <v-list-item v-if="perilCalculation.technicalPremium">
+            <v-list-item-title>Technical Premium</v-list-item-title>
+            {{ perilCalculation.technicalPremium }}
+          </v-list-item>
+          <v-subheader>Commissions</v-subheader>
+          <v-list-item v-for="(c, i) in perilCalculation.commissions" :key="i">
+            <v-list-item-title>{{ c.recipient }}</v-list-item-title>
+            {{ c.amount }}
+          </v-list-item>
+        </v-list>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-btn block color="primary" @click="checkLiquid">
+        Check Liquid
+      </v-btn></v-row
+    >
   </v-container>
 </template>
 
 <script>
+const API_URL = "https://api.sandbox.socotra.com";
+
 export default {
   name: "HelloWorld",
 
   data: () => ({
-    ecosystem: [
-      {
-        text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader",
-      },
-      {
-        text: "github",
-        href: "https://github.com/vuetifyjs/vuetify",
-      },
-      {
-        text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify",
-      },
-    ],
-    importantLinks: [
-      {
-        text: "Documentation",
-        href: "https://vuetifyjs.com",
-      },
-      {
-        text: "Chat",
-        href: "https://community.vuetifyjs.com",
-      },
-      {
-        text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify",
-      },
-      {
-        text: "Twitter",
-        href: "https://twitter.com/vuetifyjs",
-      },
-      {
-        text: "Articles",
-        href: "https://medium.com/vuetify",
-      },
-    ],
-    whatsNext: [
-      {
-        text: "Explore components",
-        href: "https://vuetifyjs.com/components/api-explorer",
-      },
-      {
-        text: "Select a layout",
-        href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
-      },
-      {
-        text: "Frequently Asked Questions",
-        href:
-          "https://vuetifyjs.com/getting-started/frequently-asked-questions",
-      },
-    ],
+    hostname: "wbarley-secandidate-configeditor.co.sandbox.socotra.com",
+    username: "wbarley-secandidate",
+    password: "",
+    token:
+      "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50LnR5cGUiOiJhY2NvdW50LnRlbmFudC5lbXBsb3llZSIsInRlbmFudC5uYW1lIjoid2JhcmxleS1zZWNhbmRpZGF0ZS05YWU3MDIwNy0yZjFhLTRkOTUtYjA0ZC04YzU0MGUyMjNhNzciLCJvbnRvbG9neS51dWlkIjoiMTFlYS1iZDUyLWE2YTIxNzMwLTlhMDYtOTI0MGQ0ZmY4NTQxIiwic3ViIjoiMDNlYmE3MzYtNGMzMC00YTAzLWI3NTEtOGU4YmUwMjUyMTUyIiwiYWNjb3VudC5uYW1lIjoiQWxpY2UgTGVlIiwiYWNjb3VudC51dWlkIjoiMDNlYmE3MzYtNGMzMC00YTAzLWI3NTEtOGU4YmUwMjUyMTUyIiwidGVuYW50LnV1aWQiOiJhNWNkMDY2Yy1hMDRkLTRjOWQtOTgyNy02ZGZiOTg4Nzg2NjQiLCJ0ZW5hbnQudHlwZSI6InRlbmFudC50ZXN0IiwiZXhwIjoxNTk0ODQ3MTMyLCJ0ZW5hbnQudGltZXpvbmUiOiJBbWVyaWNhXC9OZXdfWW9yayIsImlhdCI6MTU5NDg0MzUzMn0.mfjXwyJyBRvb5j6s7gtkR5PMkC0mMjQDmmHwfccg6fw",
+    authorizationErrorMessage: "",
+    perilId: "100000903",
+    perilErrorMessage: "",
+    liquid:
+      "{% comment %} Calculate a Base Rate based on the amount of coverage {% endcomment %}\n" +
+      "{% assign indemnity = data.peril_characteristics.indemnity_in_aggregate %}\n" +
+      "{% assign base_rate = indemnity | times: 0.037 %}\n" +
+      "\n" +
+      "{% comment %} Look up a factor based on the amount of experience indicated in the Policy Characteristics {% endcomment %}\n" +
+      "{% assign experience = data.policy_characteristics.field_values.years_of_experience %}\n" +
+      '{% assign experience_factor = "example_table" | lookup: experience %}\n' +
+      "\n" +
+      "{% comment %} set the technical premium and premium  {% endcomment %}\n" +
+      "{% assign technical_premium = base_rate | times: experience_factor %}\n" +
+      "{{ technical_premium | set_year_technical_premium }}\n" +
+      "{{ technical_premium | times: 1.2 | set_year_premium }}\n" +
+      "\n" +
+      '{{ 10 | add_commission: "Zenith Insurance Brokers" }}\n' +
+      '{{ 25 | add_commission: "Agent Carla" }}',
+    variables: "",
+    perilCalculation: {},
   }),
+  computed: {
+    authorized() {
+      return !!this.token;
+    },
+  },
+  methods: {
+    async authorize() {
+      this.authorizationErrorMessage = ""; // Clear the error state of the input boxes
+      this.token = ""; // Clear the existing token
+
+      const authResponse = await fetch(`${API_URL}/account/authenticate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          hostName: this.hostName,
+          username: this.username,
+          password: this.password,
+        }),
+      });
+      const json = await authResponse.json();
+      const token = json.authorizationToken;
+
+      // Check for authorization failure (bad user or password)
+      if (json.httpStatus === "401") {
+        this.authorizationErrorMessage =
+          json.message ||
+          "Unauthorized: Username, Password, and Tenant Hostname don't match.";
+      }
+      // Check for some other error resulting in no token
+      else if (!token) {
+        this.authorizationErrorMessage =
+          json.message ||
+          "Unauthorized: Something went wrong, check the console.";
+        // console.log("Error trying to authenticate. Here's the response:");
+        // console.log(json);
+      }
+
+      // Set the token which is either legit or undefined
+      this.token = token;
+    },
+    async checkLiquid() {
+      const response = await fetch(
+        `${API_URL}/calculation/checkExistingPerilPremium`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: this.token,
+          },
+          body: JSON.stringify({
+            calculation: this.liquid,
+            perilDisplayId: this.perilId,
+          }),
+        }
+      );
+      const json = await response.json();
+
+      if (json.httpStatus === "404") {
+        this.perilErrorMessage = json.message || "Bad Peril ID";
+      } else if (json.httpStatus === "417") {
+        this.token = ""; // Token no longer valid
+      } else {
+        this.perilCalculation = json;
+        this.variables = Object.keys(json.assignedVariables).map((k) => {
+          return { key: k, value: json.assignedVariables[k] };
+        });
+      }
+    },
+  },
 };
 </script>

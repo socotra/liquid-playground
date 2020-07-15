@@ -33,14 +33,14 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <HelloWorld />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   name: "App",
