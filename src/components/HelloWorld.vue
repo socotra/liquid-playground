@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="11">
         <v-text-field
-          v-model="hostname"
+          v-model="hostName"
           label="Tenant Hostname"
           :error-messages="authorizationErrorMessage"
           :color="authorized ? 'success' : 'normal'"
@@ -95,11 +95,10 @@ export default {
   name: "HelloWorld",
 
   data: () => ({
-    hostname: "wbarley-secandidate-configeditor.co.sandbox.socotra.com",
-    username: "wbarley-secandidate",
-    password: "",
-    token:
-      "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50LnR5cGUiOiJhY2NvdW50LnRlbmFudC5lbXBsb3llZSIsInRlbmFudC5uYW1lIjoid2JhcmxleS1zZWNhbmRpZGF0ZS05YWU3MDIwNy0yZjFhLTRkOTUtYjA0ZC04YzU0MGUyMjNhNzciLCJvbnRvbG9neS51dWlkIjoiMTFlYS1iZDUyLWE2YTIxNzMwLTlhMDYtOTI0MGQ0ZmY4NTQxIiwic3ViIjoiMDNlYmE3MzYtNGMzMC00YTAzLWI3NTEtOGU4YmUwMjUyMTUyIiwiYWNjb3VudC5uYW1lIjoiQWxpY2UgTGVlIiwiYWNjb3VudC51dWlkIjoiMDNlYmE3MzYtNGMzMC00YTAzLWI3NTEtOGU4YmUwMjUyMTUyIiwidGVuYW50LnV1aWQiOiJhNWNkMDY2Yy1hMDRkLTRjOWQtOTgyNy02ZGZiOTg4Nzg2NjQiLCJ0ZW5hbnQudHlwZSI6InRlbmFudC50ZXN0IiwiZXhwIjoxNTk0ODQ3MTMyLCJ0ZW5hbnQudGltZXpvbmUiOiJBbWVyaWNhXC9OZXdfWW9yayIsImlhdCI6MTU5NDg0MzUzMn0.mfjXwyJyBRvb5j6s7gtkR5PMkC0mMjQDmmHwfccg6fw",
+    hostName: "wbarley-secandidate-configeditor.co.sandbox.socotra.com",
+    username: "alice.lee",
+    password: "socotra",
+    token: "",
     authorizationErrorMessage: "",
     perilId: "100000903",
     perilErrorMessage: "",
@@ -131,7 +130,6 @@ export default {
     async authorize() {
       this.authorizationErrorMessage = ""; // Clear the error state of the input boxes
       this.token = ""; // Clear the existing token
-
       const authResponse = await fetch(`${API_URL}/account/authenticate`, {
         method: "POST",
         headers: {
