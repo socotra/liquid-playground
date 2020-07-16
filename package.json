@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve-built": "serve dist"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -27,6 +28,7 @@
     "prettier": "2.0.5",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
+    "serve": "^11.3.2",
     "vue-cli-plugin-vuetify": "~2.0.6",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.3.0"
