@@ -190,9 +190,11 @@ export default {
         this.token = ""; // Token no longer valid
       } else {
         this.perilCalculation = json;
-        this.variables = Object.keys(json.assignedVariables).map((k) => {
-          return { key: k, value: json.assignedVariables[k] };
-        });
+        this.variables = json.assignedVariables
+          ? Object.keys(json.assignedVariables).map((k) => {
+              return { key: k, value: json.assignedVariables[k] };
+            })
+          : [];
       }
     },
   },
