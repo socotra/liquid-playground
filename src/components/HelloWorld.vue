@@ -163,6 +163,11 @@ export default {
       this.token = token;
     },
     async checkLiquid() {
+      // Authorize if necessary
+      if (!this.token) {
+        await this.authorize();
+      }
+
       const response = await fetch(
         `${API_URL}/calculation/checkExistingPerilPremium`,
         {
