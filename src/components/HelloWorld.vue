@@ -56,7 +56,7 @@
       <v-col cols="12">
         <v-list>
           <v-subheader>Variables</v-subheader>
-          <v-list-item v-for="(v, i) in variables" :key="i">
+          <v-list-item v-for="(v, i) in variables" :key="`var_${i}`">
             <v-list-item-title>{{ v.key }}</v-list-item-title>
             {{ v.value }}
           </v-list-item>
@@ -70,7 +70,10 @@
             {{ perilCalculation.technicalPremium }}
           </v-list-item>
           <v-subheader>Commissions</v-subheader>
-          <v-list-item v-for="(c, i) in perilCalculation.commissions" :key="i">
+          <v-list-item
+            v-for="(c, i) in perilCalculation.commissions"
+            :key="`comm_${i}`"
+          >
             <v-list-item-title>{{ c.recipient }}</v-list-item-title>
             {{ c.amount }}
           </v-list-item>
