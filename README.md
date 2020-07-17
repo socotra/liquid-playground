@@ -36,8 +36,7 @@ npm run deploy                  # Deploy the built project to AWS S3
 ### Release
 
 - update `CHANGELOG.md` with new release section
-- update version number in `package.json`
-- update user-facing version number listed in `App.vue`
+- update version number in `package.json` and in `App.vue`
 - finish all commits, merge `feature -> develop -> master`
 - tag the commit representing the release with version number
   prepended with 'v', e.g. v1.0.0 and push the tag to origin
