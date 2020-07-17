@@ -93,6 +93,7 @@ const API_URL = "https://api.sandbox.socotra.com";
 
 // TODO: add readme
 // TODO: add to readme: serve package
+// TODO add to readme publicPath config
 
 export default {
   name: "HelloWorld",

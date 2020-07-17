@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
-    "serve-built": "serve dist"
+    "build+serve": "npm run build && npm run serve-built-subpath",
+    "serve-built-subpath": "serve .",
+    "serve-built-at-root": "serve dist"
   },
   "dependencies": {
     "core-js": "^3.6.5",
