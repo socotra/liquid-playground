@@ -40,8 +40,8 @@ npm run deploy                  # Deploy the built project to AWS S3
 - finish all commits, merge `feature -> develop -> master`
 - tag the commit representing the release with version number
   prepended with 'v', e.g. v1.0.0 and push the tag to origin
-- build and deploy to `<s3>/policy-explorer/v<versionNumber>`
-  and to `<s3>/policy-explorer` (meddle with the `deployPath`
+- build and deploy to `<s3>/liquid-playground/v<versionNumber>`
+  and to `<s3>/liquid-playground` (meddle with the `deployPath`
   property in `vue.config.js`)
 - head to GitHub > releases and add/edit the release associated
   with the version tag, paste in the new release section from
