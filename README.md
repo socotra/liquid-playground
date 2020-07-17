@@ -3,6 +3,9 @@
 A web app for testing and debugging your Socotra Liquid Calculations.
 [Jump to the app!](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
 
+[Open an issue](https://github.com/socotra/liquid-playground/issues/new)
+to record ideas, feature suggestions, and bugs.
+
 ## Development
 
 ### Follow these conventions
@@ -14,14 +17,14 @@ A web app for testing and debugging your Socotra Liquid Calculations.
 
 ### Setup
 
-```
+```shell script
 npm install -g @vue/cli         # Globally install Vue Cli which manages the project.
 npm install                     # Then install all project requirements as usual.
 ```
 
 ### NPM Commands
 
-```
+```shell script
 npm run serve                   # Serve up the app locally while developing!
 npm run lint                    # Check the project for errors
 npm run build                   # Compile and minify for production
@@ -179,29 +182,6 @@ module.exports = {
 };
 ```
 
-### Add [vue-cli-plugin-s3-deploy](https://github.com/multiplegeorges/vue-cli-plugin-s3-deploy)
-
-For deployment of this web app to AWS S3 which serves the app.
-
-```shell script
-vue add s3-deploy
-```
-
-I chose all defaults except:
-
-- where in the bucket (deployPath): liquid-playground
-
-#### Configure your AWS credentials file
-
-The main thing is to have your AWS Shell credentials in `~/.aws/credentials`, like this example:
-
-```
-#~/.aws/credentials
-[default]
-aws_access_key_id = Z17AIT6KDJJD1IUOUEIR
-aws_secret_access_key = XHakkwO8IUtFUDFKQfE2qs4poiukD3IxzlLKJi11
-```
-
 ### Add [Vuetify](https://vuetifyjs.com/en/getting-started/quick-start/)
 
 Adds visual and reactive Vue components;
@@ -247,3 +227,37 @@ component to one of your Vue templates.
 
 ESLint should throw an error,
 stating: `ESLint: 'v-layout' has been replaced with 'v-row'(vuetify/no-legacy-grid)`
+
+### Add [vue-cli-plugin-s3-deploy](https://github.com/multiplegeorges/vue-cli-plugin-s3-deploy)
+
+For deployment of this web app to AWS S3 which serves the app.
+
+```shell script
+vue add s3-deploy
+```
+
+I chose all defaults except:
+
+- where in the bucket (deployPath): liquid-playground
+
+#### Configure your AWS credentials file
+
+In order to upload to AWS S3, the s3-deploy plugin needs to be able to use your AWS shell credentials.
+
+It will look in `~/.aws/credentials`, which should look like this:
+
+```
+#~/.aws/credentials
+[default]
+aws_access_key_id = Z17AIT6KDJJD1IUOUEIR
+aws_secret_access_key = XHakkwO8IUtFUDFKQfE2qs4poiukD3IxzlLKJi11
+```
+
+If you like, you can use the AWS-CLI ([install](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html))
+to set that up.
+
+Then configure it (which will create your credentials file)
+
+```shell script
+aws configure
+```
