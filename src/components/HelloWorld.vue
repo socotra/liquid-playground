@@ -91,6 +91,9 @@
 <script>
 const API_URL = "https://api.sandbox.socotra.com";
 
+// TODO: add readme
+// TODO: add to readme: serve package
+
 export default {
   name: "HelloWorld",
 
