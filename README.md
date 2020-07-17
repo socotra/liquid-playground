@@ -142,7 +142,7 @@ module.exports = {
 
 #### Add [linting for JSDoc Comments](https://github.com/gajus/eslint-plugin-jsdoc)
 
-This is another ESlint plugin: eslint-plugin-jsdoc, providing rules
+This is another ESLint plugin: eslint-plugin-jsdoc, providing rules
 to check JSDoc comments for mismatched parameters or types, etc.
 
 Assuming ESLint is installed as above, install the plugin:
@@ -220,7 +220,7 @@ component to one of your Vue templates.
 
 ```html
 <v-app>
-  <v-layout />
+  <v-layout></v-layout>
   <!--...-->
 </v-app>
 ```
