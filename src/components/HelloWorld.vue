@@ -105,19 +105,12 @@ export default {
     password: "socotra",
     token: "",
     authorizationErrorMessage: "",
-    perilId: "100000903",
+    perilId: "100000334",
     perilErrorMessage: "",
     liquid:
-      "{% comment %} Calculate a Base Rate based on the amount of coverage {% endcomment %}\n" +
-      "{% assign indemnity = data.peril_characteristics.indemnity_in_aggregate %}\n" +
-      "{% assign base_rate = indemnity | times: 0.037 %}\n" +
+      "{% assign base_rate = 21 %}\n" +
       "\n" +
-      "{% comment %} Look up a factor based on the amount of experience indicated in the Policy Characteristics {% endcomment %}\n" +
-      "{% assign experience = data.policy_characteristics.field_values.years_of_experience %}\n" +
-      '{% assign experience_factor = "example_table" | lookup: experience %}\n' +
-      "\n" +
-      "{% comment %} set the technical premium and premium  {% endcomment %}\n" +
-      "{% assign technical_premium = base_rate | times: experience_factor %}\n" +
+      "{% assign technical_premium = base_rate | times: 10 %}\n" +
       "{{ technical_premium | set_year_technical_premium }}\n" +
       "{{ technical_premium | times: 1.2 | set_year_premium }}\n" +
       "\n" +
