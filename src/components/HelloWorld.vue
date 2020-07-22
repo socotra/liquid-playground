@@ -48,6 +48,7 @@
           v-model="liquid"
           label="Liquid"
           rows="12"
+          :error-messages="liquidErrorMessage"
           @change="checkLiquid"
         />
       </v-col>
@@ -122,6 +123,7 @@ export default {
       "\n" +
       '{{ 10 | add_commission: "Zenith Insurance Brokers" }}\n' +
       '{{ 25 | add_commission: "Agent Carla" }}',
+    liquidErrorMessage: "",
     variables: "",
     perilCalculation: {},
   }),
@@ -167,10 +169,11 @@ export default {
       this.token = token;
     },
     async checkLiquid() {
-      // Authorize if necessary
-      if (!this.token) {
-        await this.authorize();
-      }
+      // Reset error messages
+      this.perilErrorMessage = "";
+      this.liquidErrorMessage = "";
+
+      await this.authorize(); // Authorize in case token is expired
 
       const response = await fetch(
         `${API_URL}/calculation/checkExistingPerilPremium`,
@@ -187,18 +190,24 @@ export default {
         }
       );
       const json = await response.json();
-
-      if (json.httpStatus === "404") {
-        this.perilErrorMessage = json.message || "Bad Peril ID";
-      } else if (json.httpStatus === "417") {
-        this.token = ""; // Token no longer valid
-      } else {
+      if (!json.httpStatus) {
+        // Success
         this.perilCalculation = json;
         this.variables = json.assignedVariables
           ? Object.keys(json.assignedVariables).map((k) => {
               return { key: k, value: json.assignedVariables[k] };
             })
           : [];
+      } else if (json.httpStatus === "404") {
+        // Bad Peril ID
+        this.perilErrorMessage = json.message || "Bad Peril ID";
+      } else if (json.httpStatus === "406") {
+        // Bad Liquid
+        this.liquidErrorMessage = json.message || "Bad Liquid";
+      } else {
+        // Some other error
+        this.liquidErrorMessage =
+          json.message || json.httpStatus || "Some other error";
       }
     },
   },
