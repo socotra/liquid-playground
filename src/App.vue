@@ -27,6 +27,7 @@
             text
             v-bind="attrs"
             v-on="on"
+            @click="trackEvent('GitHub Release Link Clicked')"
           >
             <span class="mr-2">{{ version }}</span>
             <v-icon>mdi-github</v-icon>
@@ -43,6 +44,7 @@
             icon
             v-bind="attrs"
             v-on="on"
+            @click="trackEvent('Report a Problem Link Clicked')"
           >
             <v-icon>mdi-alert</v-icon>
           </v-btn>

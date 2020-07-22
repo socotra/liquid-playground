@@ -6,6 +6,13 @@ A web app for testing and debugging your Socotra Liquid Calculations.
 [Open an issue](https://github.com/socotra/liquid-playground/issues/new)
 to record ideas, feature suggestions, and bugs.
 
+## Admin for the Live Webapp
+
+Usage Tracking:
+
+- [Collection via Segment](https://app.segment.com/william-barley/sources/liquid_playground/overview)
+- [Analytics via Google Analytics](https://analytics.google.com/analytics/web/?authuser=1#/report-home/a170082233w240544320p224500838)
+
 ## Development
 
 ### Follow these conventions
@@ -260,3 +267,13 @@ Then configure it (which will create your credentials file)
 ```shell script
 aws configure
 ```
+
+### Integrate [Segment](https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/quickstart/)
+
+To track usage.
+
+Also refer to the [Segment Vue guide](https://github.com/segmentio/analytics-vue)
+when getting started.
+
+Main steps are placing a <script> inside index.html,
+and then making calls to window.analytics when users take actions.

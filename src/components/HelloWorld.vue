@@ -201,6 +201,13 @@ export default {
         // Some other error
         this.liquidErrorMessage = json.message || "Some other error";
       }
+
+      // Usage Tracking
+      this.trackEvent("checkLiquid", {
+        tenant: this.hostName,
+        httpStatus: r.status,
+        peril: this.perilId,
+      });
     },
   },
 };
