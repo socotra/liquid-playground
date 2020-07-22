@@ -168,7 +168,7 @@ export default {
 
       await this.authorize(); // Authorize in case token is expired
 
-      const response = await fetch(
+      const r = await fetch(
         `${API_URL}/calculation/checkExistingPerilPremium`,
         {
           method: "POST",
@@ -182,8 +182,8 @@ export default {
           }),
         }
       );
-      const json = await response.json();
-      if (response.ok) {
+      const json = await r.json();
+      if (r.ok) {
         // Success
         this.perilCalculation = json;
         this.variables = json.assignedVariables
@@ -191,16 +191,15 @@ export default {
               return { key: k, value: json.assignedVariables[k] };
             })
           : [];
-      } else if (json.httpStatus === "404") {
+      } else if (r.status === 404) {
         // Bad Peril ID
         this.perilErrorMessage = json.message || "Bad Peril ID";
-      } else if (json.httpStatus === "406") {
+      } else if ([406, 422].includes(r.status)) {
         // Bad Liquid
         this.liquidErrorMessage = json.message || "Bad Liquid";
       } else {
         // Some other error
-        this.liquidErrorMessage =
-          json.message || json.httpStatus || "Some other error";
+        this.liquidErrorMessage = json.message || "Some other error";
       }
     },
   },
