@@ -183,7 +183,7 @@ export default {
         }
       );
       const json = await response.json();
-      if (!json.httpStatus) {
+      if (response.ok) {
         // Success
         this.perilCalculation = json;
         this.variables = json.assignedVariables
