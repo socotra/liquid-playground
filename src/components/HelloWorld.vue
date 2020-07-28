@@ -105,7 +105,7 @@ export default {
     password: "socotra",
     token: "",
     authorizationErrorMessage: "",
-    perilId: "100000334",
+    perilId: "100000011",
     perilErrorMessage: "",
     liquid:
       "{% assign base_rate = 21 %}\n" +
