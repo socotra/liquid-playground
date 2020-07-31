@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "echo 'Building the app:' && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "vue-cli-service s3-deploy",
+    "deploy": "echo 'Deploying the app:' && vue-cli-service s3-deploy",
     "version:major": "npm version major --message 'release: bump version'",
     "version:minor": "npm version minor --message 'release: bump version'",
     "version:patch": "npm version patch --message 'release: bump version'",
-    "postversion": "git push --dry-run && echo 'pushing' &&  git push && git push --tags --dry-run&& echo 'pushing tags'  && git push --tags",
+    "postversion": "npm run git:push &&  npm run git:pushtags && npm run build && npm run deploy",
+    "git:push": "echo 'git pushing:' && git push",
+    "git:pushtags": "echo 'git pushing tags:' && git push --tags",
     "build+serve": "npm run build && npm run serve-built-subpath",
     "serve-built-at-root": "serve dist",
     "serve-built-subpath": "serve ."
