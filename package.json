@@ -10,6 +10,7 @@
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",
+    "version": "git push && git push --tags",
     "build+serve": "npm run build && npm run serve-built-subpath",
     "serve-built-at-root": "serve dist",
     "serve-built-subpath": "serve ."
