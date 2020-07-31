@@ -49,12 +49,10 @@ npm run deploy                  # Deploy the built project to AWS S3
 - run `npm run <script>`, script being
   `version:major`, `version:minor`, or `version:patch`.
   Requires clean git working directory.
-  which will bump the version, commit, and tag the commit.
-- push to origin with tags
-- build
-- deploy to `<s3>/liquid-playground/v<versionNumber>`
-  and to `<s3>/liquid-playground` (meddle with the `deployPath`
-  property in `vue.config.js`)
+  which will run `npm version` which will bump the version, commit and tag,
+  push the commits and tags, build, and deploy.
+- deploy, in addition, to `<s3>/liquid-playground/v<versionNumber>`
+  (use the `deployPath` property in `vue.config.js`)
 - head to GitHub > releases and add/edit the release associated
   with the version tag, paste in the new release section from
   `CHANGELOG.md`
