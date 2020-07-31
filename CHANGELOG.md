@@ -7,9 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.4] - 2020-07-31
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.4/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.4/index.html)
 
 ### Fixed
 
@@ -17,9 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.3] - 2020-07-31
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.3/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.3/index.html)
 
 ### Fixed
 
@@ -27,9 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.2] - 2020-07-31
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.2/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.2/index.html)
 
 ### Fixed
 
@@ -37,9 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.1] - 2020-07-28
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.1/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.1/index.html)
 
 ### Fixed
 
@@ -47,9 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0] - 2020-07-22
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.0/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.0/index.html)
 
 ### Added
 
@@ -58,9 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2020-07-17
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.2.0/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.2.0/index.html)
 
 ### Added
 
@@ -72,10 +60,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2020-07-17
 
-[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.1.0/index.html)
-|
-[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+[Latest Release][latest] | [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.1.0/index.html)
 
 ### Added
 
 - A web app for testing and debugging Socotra Liquid Calculations!
+
+[latest]: http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html
