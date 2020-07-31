@@ -42,32 +42,15 @@ npm run deploy                  # Deploy the built project to AWS S3
 
 ### Release
 
-#### New Process
-
 - update `CHANGELOG.md` with new release section
 - finish all commits, merge `feature -> develop -> master`
-- run `npm run <script>`, script being
+- run one of the npm scripts:
   `version:major`, `version:minor`, or `version:patch`.
   Requires clean git working directory.
-  which will run `npm version` which will bump the version, commit and tag,
+  This will run `npm version` which will bump the version, commit and tag,
   push the commits and tags, build, and deploy.
-- deploy, in addition, to `<s3>/liquid-playground/v<versionNumber>`
+- In addition, deploy to `<s3>/liquid-playground/v<versionNumber>`
   (use the `deployPath` property in `vue.config.js`)
-- head to GitHub > releases and add/edit the release associated
-  with the version tag, paste in the new release section from
-  `CHANGELOG.md`
-
-#### Old Process
-
-- update `CHANGELOG.md` with new release section
-- update version number in `package.json`
-- finish all commits, merge `feature -> develop -> master`
-- tag the commit representing the release with version number
-  prepended with 'v', e.g. v1.0.0 and push the tag to origin
-- build
-- deploy to `<s3>/liquid-playground/v<versionNumber>`
-  and to `<s3>/liquid-playground` (meddle with the `deployPath`
-  property in `vue.config.js`)
 - head to GitHub > releases and add/edit the release associated
   with the version tag, paste in the new release section from
   `CHANGELOG.md`
@@ -327,9 +310,9 @@ module.exports = {
 };
 ```
 
-And then use it in your app.
+Then use it in your app:
 
-```js
+```
 export default {
   name: "App",
   data: () => ({ version: process.env.PACKAGE_VERSION }),
