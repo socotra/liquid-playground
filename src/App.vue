@@ -21,7 +21,7 @@
           <v-btn
             :href="
               'https://github.com/socotra/liquid-playground/releases/tag/' +
-              version
+              appVersion
             "
             target="_blank"
             text
@@ -68,9 +68,5 @@ export default {
   components: {
     HelloWorld,
   },
-
-  data: () => ({
-    version: "v0.3.1",
-  }),
 };
 </script>
