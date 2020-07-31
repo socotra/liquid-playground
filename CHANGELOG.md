@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 Follows the format convention here: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.4] - 2020-07-31
+
+[This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.4/index.html)
+|
+[Latest](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
+
+### Fixed
+
+- Github Release link went to incorrect version name
+
 ## [0.3.3] - 2020-07-31
 
 [This Release](http://s3.amazonaws.com/socotra.wb/liquid-playground/v0.3.3/index.html)

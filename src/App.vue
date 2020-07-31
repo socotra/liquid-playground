@@ -19,10 +19,7 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            :href="
-              'https://github.com/socotra/liquid-playground/releases/tag/' +
-              appVersion
-            "
+            :href="`https://github.com/socotra/liquid-playground/releases/tag/v${appVersion}`"
             target="_blank"
             text
             v-bind="attrs"
