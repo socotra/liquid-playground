@@ -10,8 +10,7 @@
     "version:major": "npm version major --message 'release: bump version'",
     "version:minor": "npm version minor --message 'release: bump version'",
     "version:patch": "npm version patch --message 'release: bump version'",
-    "version": "git push --tags --dry-run && git push --dry-run",
-    "postversion": "git push --tags --dry-run && git push --dry-run",
+    "postversion": "git push --dry-run && git push && git push --tags --dry-run && git push --tags",
     "build+serve": "npm run build && npm run serve-built-subpath",
     "serve-built-at-root": "serve dist",
     "serve-built-subpath": "serve ."
