@@ -29,7 +29,7 @@
             v-on="on"
             @click="trackEvent('GitHub Release Link Clicked')"
           >
-            <span class="mr-2">{{ version }}</span>
+            <span class="mr-2">{{ appVersion }}</span>
             <v-icon>mdi-github</v-icon>
           </v-btn>
         </template>

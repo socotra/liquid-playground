@@ -8,6 +8,13 @@ Vue.config.productionTip = false;
 // in template, use: "trackEvent()"
 // in Component use: this.trackEvent()
 Vue.mixin({
+  data: () => ({
+    /**
+     * appVersion presents the version number of the app, e.g. 0.3.1
+     */
+    appVersion: process.env.PACKAGE_VERSION,
+  }),
+
   methods: {
     /**
      * Send the namedEvent to usage tracking

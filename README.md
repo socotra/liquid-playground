@@ -277,3 +277,48 @@ when getting started.
 
 Main steps are placing a <script> inside index.html,
 and then making calls to window.analytics when users take actions.
+
+### Add webpack to display a Version number
+
+Vue-Cli already uses and configures Webpack for you,
+but here we need to import the package to:
+To use the `package.json` version number within the app.
+
+```shell script
+npm install --save-dev webpack
+```
+
+```js
+// vue.config.js
+const fs = require("fs");
+const webpack = require("webpack");
+
+const packageJson = fs.readFileSync("./package.json").toString();
+const version = JSON.parse(packageJson).version || 0;
+module.exports = {
+  //... other exports ...
+  configureWebpack: {
+    plugins: [
+      new webpack.DefinePlugin({
+        "process.env": {
+          PACKAGE_VERSION: `"${version}"`,
+        },
+      }),
+    ],
+  },
+};
+```
+
+And then use it in your app.
+
+```js
+export default {
+  name: "App",
+  data: () => ({ version: process.env.PACKAGE_VERSION }),
+};
+```
+
+```html
+<!-- your html template -->
+<template>{{ version }}</template>;
+```
