@@ -83,11 +83,6 @@
       </v-col>
     </v-row>
     <v-row> </v-row>
-    <v-row>
-      <v-btn block color="primary" @click="checkLiquid">
-        Check Liquid
-      </v-btn></v-row
-    >
   </v-container>
 </template>
 
