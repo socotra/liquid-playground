@@ -42,22 +42,20 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <v-row v-if="liquidErrorMessage">{{ liquidErrorMessage }} </v-row>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="7">
         <editor
           v-model="liquid"
           lang="liquid"
           theme="monokai"
           width="100%"
-          height="350"
+          height="700"
           @init="editorInit"
           @input="checkLiquid"
         ></editor>
       </v-col>
-    </v-row>
-    <v-row v-if="liquidErrorMessage">{{ liquidErrorMessage }} </v-row>
-    <v-row>
-      <v-col cols="12">
+      <v-col cols="5">
         <v-list>
           <v-subheader>Variables</v-subheader>
           <v-list-item v-for="(v, i) in variables" :key="`var_${i}`">
@@ -84,6 +82,7 @@
         </v-list>
       </v-col>
     </v-row>
+    <v-row> </v-row>
     <v-row>
       <v-btn block color="primary" @click="checkLiquid">
         Check Liquid
