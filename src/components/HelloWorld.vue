@@ -44,15 +44,18 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-textarea
+        <editor
           v-model="liquid"
-          label="Liquid"
-          rows="12"
-          :error-messages="liquidErrorMessage"
-          @change="checkLiquid"
-        />
+          lang="liquid"
+          theme="monokai"
+          width="100%"
+          height="350"
+          @init="editorInit"
+          @input="checkLiquid"
+        ></editor>
       </v-col>
     </v-row>
+    <v-row v-if="liquidErrorMessage">{{ liquidErrorMessage }} </v-row>
     <v-row>
       <v-col cols="12">
         <v-list>
@@ -90,14 +93,30 @@
 </template>
 
 <script>
+import editor from "vue2-ace-editor";
+
 const API_URL = "https://api.sandbox.socotra.com";
 
 // TODO: add readme
 // TODO: add to readme: serve package
 // TODO add to readme publicPath config
 
+const initialLiquid = `{% assign base_rate = 21 %}
+{% assign technical_premium = base_rate | times: 10 %}
+
+{{ technical_premium | set_year_technical_premium }}
+{{ technical_premium | times: 1.2 | set_year_premium }}
+
+{{ 10 | add_commission: "Zenith Insurance Brokers" }}
+{{ 25 | add_commission: "Agent Carla" }}
+`;
+
 export default {
   name: "HelloWorld",
+
+  components: {
+    editor,
+  },
 
   data: () => ({
     hostName: "wbarley-secandidate-configeditor.co.sandbox.socotra.com",
@@ -107,15 +126,7 @@ export default {
     authorizationErrorMessage: "",
     perilId: "100000123",
     perilErrorMessage: "",
-    liquid:
-      "{% assign base_rate = 21 %}\n" +
-      "\n" +
-      "{% assign technical_premium = base_rate | times: 10 %}\n" +
-      "{{ technical_premium | set_year_technical_premium }}\n" +
-      "{{ technical_premium | times: 1.2 | set_year_premium }}\n" +
-      "\n" +
-      '{{ 10 | add_commission: "Zenith Insurance Brokers" }}\n' +
-      '{{ 25 | add_commission: "Agent Carla" }}',
+    liquid: initialLiquid,
     liquidErrorMessage: "",
     variables: "",
     perilCalculation: {},
@@ -126,6 +137,15 @@ export default {
     },
   },
   methods: {
+    editorInit() {
+      // eslint-disable-next-line global-require
+      require("brace/ext/language_tools"); // language extension prerequisite...
+      // eslint-disable-next-line global-require
+      require("brace/mode/liquid");
+      // eslint-disable-next-line global-require
+      require("brace/theme/monokai");
+      this.checkLiquid();
+    },
     async authorize() {
       this.authorizationErrorMessage = ""; // Clear the error state of the input boxes
       this.token = ""; // Clear the existing token
