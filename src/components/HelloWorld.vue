@@ -11,7 +11,9 @@
         ></v-text-field>
       </v-col>
       <v-col cols="1">
-        <v-icon :color="authorized ? 'success' : 'normal'">mdi-circle</v-icon>
+        <v-icon :color="authorized ? 'success' : 'normal'" small
+          >mdi-circle</v-icon
+        >
       </v-col>
     </v-row>
     <v-row>
@@ -92,14 +94,77 @@ const API_URL = "https://api.sandbox.socotra.com";
 
 // TODO add to readme publicPath config
 
-const initialLiquid = `{% assign base_rate = 21 %}
-{% assign technical_premium = base_rate | times: 10 %}
+const initialLiquid = `{% comment %} Data context {% endcomment %}
+{% comment %} https://docs.socotra.com/production/configuration/premium.html#structure-of-the-data-object  {% endcomment %}
+{% assign policyLocator = data.policy_characteristics.locator %}
 
-{{ technical_premium | set_year_technical_premium }}
-{{ technical_premium | times: 1.2 | set_year_premium }}
 
-{{ 10 | add_commission: "Zenith Insurance Brokers" }}
-{{ 25 | add_commission: "Agent Carla" }}
+{% comment %} Premium {% endcomment %}
+{% comment %} Can alternatively use: set_month_premium {% endcomment %}
+{{ 10 | set_year_premium }}
+
+
+{% comment %} Technical Premium {% endcomment %}
+{% comment %} Can alternatively use: set_month_technical_premium {% endcomment %}
+{{ 8 | set_year_technical_premium }}
+
+
+{% comment %} Commissions {% endcomment %}
+{{ 2 | add_commission: "Agent 291" }}
+{{ 2 | add_commission: "Broker Joe Haldeman" }}
+
+
+{% comment %} Loop over a list of Drivers       {% endcomment %}
+{% comment %}  shows how to access field groups {% endcomment %}
+{% comment %}  and accumulate an array of       {% endcomment %}
+{% comment %}  results for each driver          {% endcomment %}
+{% comment %} Drivers are at the Policy Level   {% endcomment %}
+{% comment %} Drivers are each a group of fields{% endcomment %}
+{% comment %}  such as firstName, lastName, ... {% endcomment %}
+{% assign separator = "|" %}
+{% assign fieldGroups = data.policy_characteristics.field_groups_by_locator %}
+{% assign driverLocators = data.policy_characteristics.field_values.drivers %}
+{% for driverLocator in driverLocators %}
+    {% assign driver = fieldGroups[driverLocator] %}
+    {% assign firstNameLength = driver.driver_firstname | size  %}
+    {% assign lastNameLength = driver.driver_lastname | size  %}
+    {% assign score = firstNameLength | plus: lastNameLength %}
+    {% if scores %}
+        {% assign scores = scores | append: separator | append: score %}
+    {% else %}
+        {% assign scores = score %}
+    {% endif %}
+{% endfor %}
+{% assign scores = scores | split: separator %}
+
+
+{% comment %} Objects {% endcomment %}
+{% comment %} You can't create objects in Liquid {% endcomment %}
+{% comment %} When iterating over objects, you get a key-value pair {% endcomment %}
+{% for entry in object %}
+  {% assign key = entry[0] %}
+  {% assign value = entry[1] %}
+{% endfor %}
+
+
+{% comment %} Arrays {% endcomment %}
+{% comment %} Socotra does not support the \`concat\` Array Filter {% endcomment %}
+{% comment %} create an array from a string {% endcomment %}
+{% assign arr = "alice, bob, carol" | split: ", " %}
+
+{% comment %} back to string from array {% endcomment %}
+{% assign joined = "alice, bob, carol" | split: ", " | join: "|" %}
+
+
+{% comment %} Tip: divided_by rounds down {% endcomment %}
+{% assign roundedDown = 3 | divided_by: 2 %}
+
+
+{% comment %} Tip: A Non-Socotra Liquid Playground {% endcomment %}
+{% comment %}  for easy testing without Socotra    {% endcomment %}
+{% comment %} https://liquidjs.com/playground.html {% endcomment %}
+
+
 `;
 
 export default {
