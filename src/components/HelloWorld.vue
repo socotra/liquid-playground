@@ -128,10 +128,8 @@ const initialLiquid = `{% comment %} Data context {% endcomment %}
 {% comment %} Drivers are each a group of fields{% endcomment %}
 {% comment %}  such as firstName, lastName, ... {% endcomment %}
 {% assign separator = "|" %}
-{% assign fieldGroups = data.policy_characteristics.field_groups_by_locator %}
-{% assign driverLocators = data.policy_characteristics.field_values.drivers %}
-{% for driverLocator in driverLocators %}
-    {% assign driver = fieldGroups[driverLocator] %}
+{% for driverLocator in data.policy_characteristics.field_values.drivers %}
+    {% assign driver = data.policy_characteristics.field_groups_by_locator[driverLocator] %}
     {% assign firstNameLength = driver.driver_firstname | size  %}
     {% assign lastNameLength = driver.driver_lastname | size  %}
     {% assign score = firstNameLength | plus: lastNameLength %}
@@ -169,8 +167,6 @@ const initialLiquid = `{% comment %} Data context {% endcomment %}
 {% comment %} Tip: A Non-Socotra Liquid Playground {% endcomment %}
 {% comment %}  for easy testing without Socotra    {% endcomment %}
 {% comment %} https://liquidjs.com/playground.html {% endcomment %}
-
-
 `;
 
 export default {
