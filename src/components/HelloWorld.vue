@@ -42,7 +42,6 @@
         ></v-text-field>
       </v-col>
     </v-row>
-    <v-row v-if="liquidErrorMessage">{{ liquidErrorMessage }} </v-row>
     <v-row>
       <v-col cols="7">
         <editor
@@ -50,7 +49,7 @@
           lang="liquid"
           theme="monokai"
           width="100%"
-          height="700"
+          height="600"
           @init="editorInit"
           @input="checkLiquid"
         ></editor>
@@ -82,7 +81,7 @@
         </v-list>
       </v-col>
     </v-row>
-    <v-row> </v-row>
+    <v-row v-if="liquidErrorMessage">{{ liquidErrorMessage }} </v-row>
   </v-container>
 </template>
 
@@ -91,8 +90,6 @@ import editor from "vue2-ace-editor";
 
 const API_URL = "https://api.sandbox.socotra.com";
 
-// TODO: add readme
-// TODO: add to readme: serve package
 // TODO add to readme publicPath config
 
 const initialLiquid = `{% assign base_rate = 21 %}
@@ -113,12 +110,12 @@ export default {
   },
 
   data: () => ({
-    hostName: "wbarley-secandidate-configeditor.co.sandbox.socotra.com",
+    hostName: "will-socotra-configeditor.co.sandbox.socotra.com",
     username: "alice.lee",
     password: "socotra",
     token: "",
     authorizationErrorMessage: "",
-    perilId: "100000123",
+    perilId: "100000331",
     perilErrorMessage: "",
     liquid: initialLiquid,
     liquidErrorMessage: "",
