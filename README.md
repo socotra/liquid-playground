@@ -46,14 +46,17 @@ npm run deploy                  # Deploy the built project to AWS S3
 - finish all commits, merge `feature -> develop -> master`
 - run one of the npm scripts:
   `version:major`, `version:minor`, or `version:patch`.
-  Requires clean git working directory.
-  This will run `npm version` which will bump the version, commit and tag,
-  push the commits and tags, build, and deploy.
-- In addition, `npm run deploy` to `<s3>/liquid-playground/v<versionNumber>`
-  (use the `deployPath` property in `vue.config.js`)
-- head to GitHub > releases and add/edit the release associated
-  with the version tag, paste in the new release section from
-  `CHANGELOG.md`
+  Requires clean git working directory. This will
+  run `npm version` which will bump the version,
+  commit and tag, push the commits and tags, build, and deploy.
+- In addition, set `deployPath` property in `vue.config.js` to
+  `liquid-playground/v<versionNumber>` and then `npm run deploy` to  
+  additionally deploy this version permanently.
+- Head to GitHub > releases and add/edit the release associated
+  with the version tag, paste in two things from `CHANGELOG.md`:
+  - the new release section from
+  - the link at the bottom
+- Test the links in the release message
 
 ### Helpful Reference
 
@@ -86,7 +89,9 @@ Use Prettier to reformat files to get consistent code format and style.
 npm install --save-dev --save-exact prettier
 ```
 
-Use `--save-exact` to only upgrade `prettier` intentionally, because minor upgrades may reformat your code after you already committed well-formatted code.
+Use `--save-exact` to only upgrade `prettier` intentionally,
+because minor upgrades may reformat your code after you
+already committed well-formatted code.
 
 #### Enable reformat-on-save in WebStorm
 
@@ -127,9 +132,9 @@ Add them to your `.eslintrc.js`, see below for example.
 #### Run the Prettier rules last
 
 Make sure the Prettier rules (`"@vue/prettier"`) are placed after
-other stylistic (rather than code-quality) rules, allowing them
-to take precedence over other stylistic rules, most importantly
-rules that give conflicting advice:
+other stylistic (rather than code-quality) rules,
+allowing them to take precedence over other stylistic rules,
+most importantly rules that give conflicting advice:
 
 ```js
 // eslintrc.js
@@ -149,8 +154,9 @@ module.exports = {
 
 #### Add [linting for JSDoc Comments](https://github.com/gajus/eslint-plugin-jsdoc)
 
-This is another ESLint plugin: eslint-plugin-jsdoc, providing rules
-to check JSDoc comments for mismatched parameters or types, etc.
+This is another ESLint plugin: eslint-plugin-jsdoc,
+providing rules to check JSDoc comments for mismatched parameters or
+types, etc.
 
 Assuming ESLint is installed as above, install the plugin:
 
@@ -191,8 +197,7 @@ module.exports = {
 
 ### Add [Vuetify](https://vuetifyjs.com/en/getting-started/quick-start/)
 
-Adds visual and reactive Vue components;
-also adds style and layout helpers.
+Adds visual and reactive Vue components; also adds style and layout helpers.
 
 ```shell script
 vue add vuetify
@@ -222,8 +227,8 @@ module.exports = {
 };
 ```
 
-You can test that it works by adding, for example, a `v-layout` Vue
-component to one of your Vue templates.
+You can test that it works by adding, for example, a `v-layout`
+Vue component to one of your Vue templates.
 
 ```html
 <v-app>
@@ -232,8 +237,8 @@ component to one of your Vue templates.
 </v-app>
 ```
 
-ESLint should throw an error,
-stating: `ESLint: 'v-layout' has been replaced with 'v-row'(vuetify/no-legacy-grid)`
+ESLint should throw an error, stating:
+`ESLint: 'v-layout' has been replaced with 'v-row'(vuetify/no-legacy-grid)`
 
 ### Add [vue-cli-plugin-s3-deploy](https://github.com/multiplegeorges/vue-cli-plugin-s3-deploy)
 
@@ -249,7 +254,8 @@ I chose all defaults except:
 
 #### Configure your AWS credentials file
 
-In order to upload to AWS S3, the s3-deploy plugin needs to be able to use your AWS shell credentials.
+In order to upload to AWS S3, the s3-deploy plugin needs to be able to
+use your AWS shell credentials.
 
 It will look in `~/.aws/credentials`, which should look like this:
 
