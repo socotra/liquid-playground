@@ -96,7 +96,13 @@ const API_URL = "https://api.sandbox.socotra.com";
 
 const initialLiquid = `{% comment %} Data context {% endcomment %}
 {% comment %} https://docs.socotra.com/production/configuration/premium.html#structure-of-the-data-object  {% endcomment %}
+
+
+{% comment %} Debugging: Assign Variables {% endcomment %}
+{% comment %} Assigned variables show up on the right  {% endcomment %}
 {% assign policyLocator = data.policy_characteristics.locator %}
+{% comment %} Now look for policyLocator on the right--> {% endcomment %}
+{% comment %} This is powered by this API: https://docs.socotra.com/production/api/calculation.html#calculate-existing-peril-data {% endcomment %}
 
 
 {% comment %} Premium {% endcomment %}
