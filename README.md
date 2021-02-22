@@ -3,7 +3,21 @@
 A web app for testing and debugging your Socotra Liquid Calculations.
 [Jump to the app!](http://s3.amazonaws.com/socotra.wb/liquid-playground/index.html)
 
-[Open an issue](https://github.com/socotra/liquid-playground/issues/new)
+Liquid Playground allows you to test a Peril Calculation, 
+written in Liquid, 
+against an existing Peril, on an existing Exposure, on and existing Policy. 
+
+## Typical flow
+Log into Socotra, create a Policy+Exposure+Peril that matches your need, 
+could be simplistic, could be realistic.
+Copy the Peril ID of the Peril.
+Head to Liquid Playground, enter the correct Tenant URL and Peril ID, username, password.
+Now, write and debug your Liquid Calculation script to your hearts content. 
+As you type, your Liquid Calculation will be run against your policy and the results,
+including the values of each variable used in your script, will be displayed to you.
+
+## [Open an issue](https://github.com/socotra/liquid-playground/issues/new)
+
 to record ideas, feature suggestions, and bugs.
 
 ## Admin for the Live Webapp
