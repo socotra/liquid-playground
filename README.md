@@ -8,13 +8,14 @@ written in Liquid,
 against an existing Peril, on an existing Exposure, on and existing Policy. 
 
 ## Typical flow
-Log into Socotra, create a Policy+Exposure+Peril that matches your need, 
-could be simplistic, could be realistic.
-Copy the Peril ID of the Peril.
-Head to Liquid Playground, enter the correct Tenant URL and Peril ID, username, password.
-Now, write and debug your Liquid Calculation script to your hearts content. 
-As you type, your Liquid Calculation will be run against your policy and the results,
-including the values of each variable used in your script, will be displayed to you.
+- Log into Socotra
+- Create a Policy+Exposure+Peril that matches your need, could be simplistic, could be realistic
+- Copy the ID of the Peril
+- Head to Liquid Playground
+- Enter the URL of the Socotra Tenant you are using, Peril ID, username, password
+- Now, write and debug your Liquid Calculation script to your hearts content
+- As you type, your Liquid Calculation will be run against your policy
+- The results, including the values of each variable used in your script, will be displayed to you
 
 ## [Open an issue](https://github.com/socotra/liquid-playground/issues/new)
 
